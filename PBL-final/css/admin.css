@@ -1,0 +1,99 @@
+/* ===== bilas - halaman Admin/Petugas (Pelanggan, Transaksi, Status Cucian, Pembayaran, Jenis Layanan) ===== */
+.wrap.wide{max-width:1180px}
+.tool{margin:0;padding:16px 22px;border-bottom:1px solid var(--line)}
+.field-search{display:flex;align-items:center;gap:10px;width:270px;height:40px;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:#fff;color:#98a3b0;margin:0}
+.field-search input{border:0;outline:0;font:inherit;font-size:.75rem;color:var(--ink);width:100%;background:transparent}
+.field-search:focus-within{border-color:var(--blue);box-shadow:0 0 0 .2rem rgba(37,99,235,.12)}
+.admin-tbl .tbl td:first-child{color:var(--ink)}
+.admin-tbl .tbl td{padding:18px 22px}
+.dk{color:var(--ink);font-weight:700}
+.more{color:#9aa5b3;letter-spacing:2px}
+.btn-o{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border:1px solid #bfe6d6;background:#f2fbf7;color:#0f8a5c;border-radius:8px;font:inherit;font-size:.68rem;font-weight:700;cursor:pointer}
+.btn-o:hover{background:#e3f6ee}
+.btn-o.plain{background:#fff;border-color:var(--line);color:#3a4657}
+.btn-o.plain:hover{background:#f3f6fa}
+.btn-o.red{background:#fff;border-color:#f3d2d2;color:#d33b3b}
+.btn-o.red:hover{background:#fdf1f1}
+.cell-user{display:flex;align-items:center;gap:12px}
+.av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:.64rem;font-weight:700}
+.act{display:flex;gap:8px}
+/* Jenis layanan */
+.svc-tool{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc{padding:22px;min-height:270px;display:flex;flex-direction:column}
+.svc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.svc .ico{margin:0;width:38px;height:38px}
+.tag{font-size:.62rem;font-weight:700;border-radius:99px;padding:4px 10px}
+.tag.on{background:#def6ec;color:#0f8a5c}.tag.off{background:#eef1f5;color:#7b8794}
+.svc h3{font-size:1rem;font-weight:500;margin:0 0 6px}
+.svc .sub{font-size:.68rem;color:var(--muted)}
+.svc-mid{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px dashed #dde3ea;margin:20px 0 16px;padding-top:18px}
+.svc-mid small{display:block;font-size:.62rem;color:var(--muted);margin-bottom:4px}
+.svc-mid .price{font-size:1.35rem;font-weight:500}.svc-mid .price i{font-style:normal;font-size:.62rem;color:var(--muted)}
+.svc-mid b{font-size:.75rem}
+.square{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:8px;display:grid;place-items:center;color:#5a6678;cursor:pointer;padding:0}
+.square:hover{background:#f3f6fa}
+@media(max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr}.field-search{width:100%}.tool .btn-green{margin-left:0;width:100%;justify-content:center}}
+
+/* ===== Pop up (modal) ===== */
+.modal-bg{position:fixed;inset:0;z-index:60;background:rgba(15,27,45,.38);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.m-box{width:100%;max-width:540px;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(15,27,45,.25);animation:pop .18s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.m-box{animation:none}}
+.m-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:24px 28px 20px;border-bottom:1px solid var(--line)}
+.m-head h2{font-size:1.3rem;font-weight:400;margin:0 0 6px}
+.m-head p{font-size:.72rem;color:var(--muted);margin:0}
+.square.lg{width:40px;height:40px;border-radius:10px;flex-shrink:0}
+.m-body{padding:22px 28px 8px}
+.m-foot{display:flex;justify-content:flex-end;gap:10px;padding:18px 28px;border-top:1px solid var(--line)}
+.m-f{margin-bottom:18px}
+.m-l{display:block;font-size:.78rem;font-weight:700;color:#2b3647;margin-bottom:8px}
+.m-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.m-in{width:100%;height:46px;border:1px solid var(--line);border-radius:10px;padding:0 14px;font:inherit;font-size:.78rem;color:var(--ink);background:#fff}
+textarea.m-in{height:96px;padding:12px 14px;resize:vertical}
+.m-in::placeholder{color:#a3acb8}
+.m-in:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 .2rem rgba(37,99,235,.12)}
+.m-in.bad{border-color:#e5484d;box-shadow:0 0 0 .2rem rgba(229,72,77,.12)}
+.filters.m-sel{display:block;margin:0;padding:0}
+.m-sel .dd{width:100%}.m-sel .dd-btn{width:100%;height:46px;font-size:.78rem}
+.btn-cancel{height:40px;padding:0 20px;border:1px solid var(--line);background:#fff;border-radius:10px;font:inherit;font-size:.75rem;font-weight:700;color:#3a4657;cursor:pointer}
+.btn-cancel:hover{background:#f3f6fa}
+.m-total{display:flex;justify-content:space-between;align-items:center;background:#f6f8fb;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:.78rem;color:var(--muted)}
+.m-total b{font-size:1.2rem;color:var(--green)}
+/* Nota */
+.nota{padding:28px 30px 8px}
+.nota-brand{display:flex;align-items:center;gap:14px;padding-bottom:22px;border-bottom:1px dashed #cfd9e6}
+.nota-brand .logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(145deg,#3b82f6,#1d4ed8);color:#fff;display:grid;place-items:center}
+.nota-brand b{font-size:1.3rem;font-weight:500;display:block;line-height:1.1}.nota-brand small{font-size:.66rem;color:var(--muted)}
+.nota-title{display:flex;justify-content:space-between;align-items:center;margin:20px 0 16px}
+.nota-title b{font-size:.82rem;letter-spacing:.08em}.nota-title span{font-size:.75rem;font-weight:700;color:#4a5668}
+.nota-info{background:#f4f7fa;border-radius:12px;padding:14px 16px;margin:0 0 18px}
+.nota-info div{display:flex;justify-content:space-between;font-size:.72rem;padding:5px 0}
+.nota-info dt{font-weight:400;color:var(--muted)}.nota-info dd{margin:0;font-weight:700}
+.nota-tbl{width:100%;border-collapse:collapse;font-size:.75rem}
+.nota-tbl th{font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;color:#8793a2;font-weight:400;padding:8px 0;border-bottom:1px solid var(--line);text-align:right}
+.nota-tbl td{padding:14px 0;border-bottom:1px solid var(--line);text-align:right;color:#5a6678}
+.nota-tbl th:first-child,.nota-tbl td:first-child{text-align:left}.nota-tbl td b{color:var(--ink)}
+.nota-total{display:flex;justify-content:space-between;align-items:center;padding:18px 0 14px;border-bottom:1px dashed #cfd9e6}
+.nota-total span{font-size:.78rem;font-weight:700}.nota-total b{font-size:1.6rem;color:var(--green)}
+.nota-pay{display:flex;justify-content:space-between;padding:14px 0;font-size:.7rem;color:var(--muted)}
+.nota-pay b.ok{color:#0f8a5c}.nota-pay b.warn{color:var(--orange)}
+.nota-thanks{text-align:center;font-size:.68rem;color:var(--muted);margin:6px 0 24px}
+@media(max-width:560px){.m-two{grid-template-columns:1fr}.m-head,.m-body,.m-foot{padding-left:20px;padding-right:20px}}
+/* Saat dicetak: hanya nota yang tampil */
+@media print{
+  body>*:not(.modal-bg){display:none!important}
+  .modal-bg{position:static;background:none;backdrop-filter:none;padding:0;display:block}
+  .m-box{box-shadow:none;max-width:100%;animation:none}
+  .m-foot{display:none}
+}
+
+/* ===== Menu aksi baris ===== */
+.more{background:none;border:0;color:#9aa5b3;letter-spacing:2px;cursor:pointer;padding:4px 8px;border-radius:6px;font:inherit}
+.more:hover{background:#eef2f6;color:#3a4657}
+.rowmenu{position:fixed;z-index:70;min-width:190px;margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 30px rgba(15,27,45,.14)}
+.rowmenu li{padding:10px 14px;border-radius:6px;font-size:.75rem;color:#5a6678;cursor:pointer}
+.rowmenu li.on{background:#e3edff;color:var(--blue);font-weight:700}
+.rowmenu li:hover{background:var(--blue);color:#fff}
+.rowmenu li.danger{color:#d33b3b}.rowmenu li.danger:hover{background:#d33b3b;color:#fff}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | bilas</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+  <link href="css/admin.css" rel="stylesheet">
+</head>
+<body data-page="dashboard">
+  <div id="shell" data-title="Dashboard" data-sub="Pantau semua aktivitas laundry hari ini." data-search="Cari dashboard..." data-active="dashboard"></div>
+
+  <main class="wrap">
+    <div class="head-row">
+      <div><h2 id="greet">Selamat datang!</h2><p>Berikut ringkasan order dan pendapatan laundry.</p></div>
+      <button type="button" class="btn-green admin-only" data-act="new"><i data-i="plus" data-s="14"></i>Order Baru</button>
+    </div>
+
+    <section class="stats">
+      <div class="card-x stat"><div class="ico blue"><i data-i="doc" data-s="17"></i></div><div class="lbl">Order Hari Ini</div><div class="val" id="st0">0</div><div class="note">Order masuk hari ini</div></div>
+      <div class="card-x stat"><div class="ico orange"><i data-i="bag" data-s="17"></i></div><div class="lbl">Dalam Proses</div><div class="val" id="st1">0</div><div class="note warn">Diterima + Dicuci</div></div>
+      <div class="card-x stat"><div class="ico green"><i data-i="check" data-s="17"></i></div><div class="lbl">Selesai</div><div class="val" id="st2">0</div><div class="note">Menunggu diambil</div></div>
+      <div class="card-x stat"><div class="ico purple"><i data-i="wallet" data-s="17"></i></div><div class="lbl">Pendapatan Bulan Ini</div><div class="val" id="st3">Rp0</div><div class="note" id="st3n"></div></div>
+    </section>
+
+
+    <section class="card-x table-card">
+      <div class="panel-head">
+        <div><h3>Order Terbaru</h3><div class="sub">Order laundry terakhir</div></div>
+        <a href="laporan.html" class="link-blue">Lihat semua<i data-i="arrow" data-s="13"></i></a>
+      </div>
+      <div class="tbl-scroll"><table class="tbl">
+        <thead><tr><th>Kode Order</th><th>Pelanggan</th><th>Layanan</th><th>Tgl Masuk</th><th>Total</th><th>Status</th></tr></thead>
+        <tbody id="recentBody"></tbody>
+      </table></div>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

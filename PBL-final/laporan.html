@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laporan | bilas</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+  <div id="shell" data-title="Laporan" data-sub="Lihat rekap operasional dan pendapatan." data-search="Cari laporan..." data-active="laporan"></div>
+
+  <main class="wrap">
+    <div class="filters">
+      <label class="date-field"><i data-i="cal" data-s="14"></i><b style="font-weight:700">Dari</b><input type="date" id="dari"></label>
+      <label class="date-field"><i data-i="cal" data-s="14"></i><b style="font-weight:700">Sampai</b><input type="date" id="sampai"></label>
+      <select id="stFilter"><option value="">Semua Status</option><option>Diterima</option><option>Dicuci</option><option>Selesai</option><option>Diambil</option></select>
+      <select id="grp"><option value="hari">Per Hari</option><option value="bulan">Per Bulan</option></select>
+      <button class="btn-green" id="downloadBtn"><i data-i="doc" data-s="14"></i>Unduh Laporan</button>
+    </div>
+    <div class="stats three">
+      <div class="card-x stat"><div class="ico blue"><i data-i="doc" data-s="17"></i></div><div class="lbl">Total Order</div><div class="val" id="sOrd">0</div><div class="note">Sesuai filter</div></div>
+      <div class="card-x stat"><div class="ico green"><i data-i="wallet" data-s="17"></i></div><div class="lbl">Total Pendapatan</div><div class="val" id="sRev">Rp0</div><div class="note">Berat x harga layanan</div></div>
+      <div class="card-x stat"><div class="ico purple"><i data-i="bag" data-s="17"></i></div><div class="lbl">Total Berat</div><div class="val" id="sKg">0 kg</div><div class="note">Cucian masuk</div></div>
+    </div>
+    <nav class="card-x tabs" style="grid-template-columns:repeat(3,1fr)">
+      <button class="tab active" data-tab="status">Rekap per Status</button>
+      <button class="tab" data-tab="periode">Rekap per Periode</button>
+      <button class="tab" data-tab="detail">Detail Order</button>
+    </nav>
+    <section class="tab-pane active" id="status"><div class="card-x table-card tbl-flat"><div class="tbl-scroll"><table class="tbl">
+      <thead><tr><th>Status</th><th>Jumlah Order</th><th>Persentase</th><th>Pendapatan</th></tr></thead><tbody id="statusBody"></tbody></table></div></div></section>
+    <section class="tab-pane" id="periode">
+      <div class="card-x panel" style="padding-bottom:26px;margin-bottom:16px"><h3>Pendapatan per Periode</h3><div class="sub">Dihitung dari order sesuai filter</div>
+        <div class="bars" id="bars"></div><div class="bar-labels" id="barLabels"></div></div>
+      <div class="card-x table-card tbl-flat"><div class="tbl-scroll"><table class="tbl">
+        <thead><tr><th>Periode</th><th>Jumlah Order</th><th>Pendapatan</th></tr></thead><tbody id="periodeBody"></tbody></table></div><div class="empty-slot"></div></div></section>
+    <section class="tab-pane" id="detail"><div class="card-x table-card tbl-flat"><div class="tbl-scroll"><table class="tbl">
+      <thead><tr><th>Kode Order</th><th>Pelanggan</th><th>Layanan</th><th>Tgl Masuk</th><th>Berat</th><th>Total</th><th>Status</th></tr></thead><tbody id="trxBody"></tbody></table></div><div class="empty-slot"></div></div></section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
